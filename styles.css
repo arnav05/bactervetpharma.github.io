@@ -53,9 +53,10 @@ img {
 
 .nav-wrap {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 60px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 10px 0;
 }
 
 .brand {
@@ -66,33 +67,57 @@ img {
   text-decoration: none;
   font-weight: 700;
   font-size: 1rem;
+  min-width: 0;
 }
 
 .brand-logo {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
   border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.brand-short {
+  display: inline;
+}
+
+.brand-full {
+  display: none;
 }
 
 .site-nav {
   display: flex;
-  gap: 16px;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.site-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .site-nav a {
   color: var(--text-soft);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(14, 109, 67, 0.06);
 }
 
 .site-nav a:hover {
   color: var(--primary-dark);
+  background: rgba(14, 109, 67, 0.12);
 }
 
 .hero {
-  padding: 28px 0 8px;
+  padding: 24px 0 8px;
 }
 
 .eyebrow {
@@ -124,8 +149,9 @@ h2 {
 
 h3 {
   margin: 0 0 10px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.25;
+  text-align: center;
 }
 
 .lead {
@@ -180,38 +206,88 @@ h3 {
 .products {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(12px, 2vw, 18px);
+  gap: clamp(14px, 2.5vw, 20px);
 }
 
 .product {
-  --thumb: clamp(72px, 22vw, 140px);
-  display: grid;
-  grid-template-columns: var(--thumb) minmax(0, 1fr);
-  gap: clamp(10px, 2vw, 16px);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: clamp(10px, 2vw, 16px);
+  padding: clamp(12px, 2vw, 16px);
   box-shadow: var(--shadow-soft);
 }
 
 .product-media {
-  width: var(--thumb);
-  height: var(--thumb);
+  width: 100%;
+  height: clamp(180px, 48vw, 280px);
   background: linear-gradient(180deg, #f4faf7 0%, #e8f3ec 100%);
-  border-radius: 10px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(4px, 1vw, 10px);
-  overflow: hidden;
+  padding: clamp(10px, 2.5vw, 18px);
+  margin-bottom: 12px;
 }
 
 .product-media img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
+}
+
+.product-body {
+  min-width: 0;
+  width: 100%;
+}
+
+.price-table {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.price-head,
+.price-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  min-height: 34px;
+}
+
+.price-head {
+  background: #dcefe4;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+}
+
+.price-row {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+.price-row span {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.price-row strong {
+  color: var(--primary-dark);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .grid {
@@ -229,6 +305,10 @@ h3 {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 16px;
+}
+
+.panel h3 {
+  text-align: left;
 }
 
 .panel p {
@@ -251,58 +331,6 @@ h3 {
   text-align: center;
   font-weight: 600;
   font-size: 0.95rem;
-}
-
-.product-body {
-  min-width: 0;
-}
-
-.price-table {
-  display: grid;
-  gap: 0;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--surface-soft);
-}
-
-.price-head,
-.price-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: 9px 12px;
-  min-height: 40px;
-}
-
-.price-head {
-  background: #dcefe4;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--primary-dark);
-}
-
-.price-row {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  font-size: 1.05rem;
-}
-
-.price-row span {
-  color: var(--text);
-  font-weight: 500;
-}
-
-.price-row strong {
-  color: var(--primary-dark);
-  font-size: 1.15rem;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-  letter-spacing: 0.01em;
 }
 
 .about-brief p {
@@ -341,7 +369,7 @@ h3 {
 }
 
 .contact-value {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--primary-dark);
   word-break: break-word;
@@ -380,6 +408,34 @@ h3 {
 
 /* Tablet+ */
 @media (min-width: 700px) {
+  .nav-wrap {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 0;
+    gap: 16px;
+  }
+
+  .brand-short {
+    display: none;
+  }
+
+  .brand-full {
+    display: inline;
+  }
+
+  .site-nav {
+    gap: 6px;
+    overflow: visible;
+  }
+
+  .site-nav a {
+    font-size: 0.92rem;
+    background: transparent;
+    padding: 6px 10px;
+  }
+
   .hero {
     padding: 40px 0 12px;
   }
@@ -392,8 +448,8 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .product {
-    --thumb: clamp(100px, 12vw, 140px);
+  .product-media {
+    height: clamp(200px, 22vw, 260px);
   }
 
   .company-grid {
@@ -405,7 +461,15 @@ h3 {
   }
 
   .contact-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .price-row {
+    font-size: 0.95rem;
+  }
+
+  .price-row strong {
+    font-size: 1rem;
   }
 }
 
@@ -415,42 +479,11 @@ h3 {
     min-height: 68px;
   }
 
-  .price-row {
-    font-size: 1rem;
+  .products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .price-row strong {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .site-nav {
-    gap: 10px;
-  }
-
-  .site-nav a {
-    font-size: 0.85rem;
-  }
-
-  h3 {
-    font-size: 1.1rem;
-  }
-
-  .price-head,
-  .price-row {
-    padding: 10px;
-  }
-
-  .price-row {
-    font-size: 1.05rem;
-  }
-
-  .price-row strong {
-    font-size: 1.2rem;
-  }
-
-  .values {
-    grid-template-columns: 1fr 1fr;
+  .product-media {
+    height: clamp(220px, 18vw, 280px);
   }
 }
