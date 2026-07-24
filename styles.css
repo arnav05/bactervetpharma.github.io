@@ -10,6 +10,7 @@
   --accent-2: #5ba85c;
   --border: #d4e5dc;
   --shadow: 0 14px 36px rgba(19, 45, 34, 0.1);
+  --shadow-soft: 0 8px 24px rgba(19, 45, 34, 0.08);
 }
 
 * {
@@ -27,6 +28,12 @@ body {
   background: radial-gradient(circle at 8% 0%, #e8f7ee 0%, var(--bg) 36%, #f8fcfa 100%);
   color: var(--text);
   line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .container {
@@ -201,14 +208,6 @@ h3 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.categories {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.category {
-  border-top: 3px solid var(--accent-2);
-}
-
 .values {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -222,10 +221,160 @@ h3 {
   font-weight: 600;
 }
 
-.cta {
+.lineup {
+  margin: 0 0 28px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: #0b1a12;
+}
+
+.lineup img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  object-position: center 55%;
+}
+
+.lineup figcaption {
+  padding: 12px 16px;
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 0.92rem;
   text-align: center;
 }
 
+.products {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: var(--shadow-soft);
+  align-items: stretch;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.product-media {
+  background: linear-gradient(180deg, #f4faf7 0%, #e8f3ec 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-height: 160px;
+}
+
+.product-media img {
+  max-height: 180px;
+  width: auto;
+  object-fit: contain;
+}
+
+.product-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.product-body h3 {
+  font-size: 1.15rem;
+  color: var(--primary-dark);
+}
+
+.product-desc {
+  margin: 0 0 12px;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.price-list {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.price-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.price-list span {
+  color: var(--text-soft);
+}
+
+.price-list strong {
+  color: var(--primary-dark);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.contact-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contact-value {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  word-break: break-word;
+}
+
+.cta {
+  text-align: center;
+}
 
 .site-footer {
   border-top: 1px solid var(--border);
@@ -239,6 +388,13 @@ h3 {
   color: var(--text-soft);
   font-size: 0.95rem;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-contact {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .site-footer a {
@@ -247,19 +403,49 @@ h3 {
   font-weight: 600;
 }
 
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 920px) {
   .hero-grid,
   .split,
   .cards,
   .values,
-  .categories {
+  .products,
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 
+  .lineup img {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 @media (max-width: 640px) {
   .site-nav {
     display: none;
+  }
+
+  .product {
+    grid-template-columns: 1fr;
+  }
+
+  .product-media {
+    min-height: 200px;
+  }
+
+  .product-media img {
+    max-height: 220px;
+  }
+
+  .lineup img {
+    aspect-ratio: 4 / 3;
+    object-position: center;
+  }
+
+  .footer-wrap {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
