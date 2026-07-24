@@ -151,7 +151,7 @@ h3 {
   margin: 0 0 10px;
   font-size: 1.15rem;
   line-height: 1.25;
-  text-align: center;
+  text-align: left;
 }
 
 .lead {
@@ -241,6 +241,25 @@ h3 {
 .product-body {
   min-width: 0;
   width: 100%;
+}
+
+.product-meta {
+  margin: 0 0 12px;
+  display: grid;
+  gap: 6px;
+  text-align: left;
+}
+
+.product-meta p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.product-meta strong {
+  color: var(--primary-dark);
+  font-weight: 700;
 }
 
 .price-table {
